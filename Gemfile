@@ -23,6 +23,8 @@ group :development do
   gem "solargraph",  "0.48.0"
 end
 
+
+
 group :test do
   gem "capybara",                 "3.38.0"
   gem "selenium-webdriver",       "4.8.3"
@@ -32,6 +34,10 @@ group :test do
   gem "minitest-reporters",       "1.6.0"
   gem "guard",                    "2.18.0"
   gem "guard-minitest",           "2.4.6"
+end
+
+group :production do
+  gem "pg", "1.3.5"
 end
 
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
