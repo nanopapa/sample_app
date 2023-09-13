@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -110,7 +111,16 @@ footer {
       margin-left: 15px;
     }
   }
+
 }
+
+.navbar-nav {
+  margin: 7.5px -15px;
+  display: flex;
+}
+
+
+
 
 //  footer　手作業
 
