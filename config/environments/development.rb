@@ -83,4 +83,12 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = ["https://#{pf_host}"]
     # クラウドIDE への接続を許可する
     config.hosts.clear
+
+    config.action_mailer.raise_delivery_errors = false
+
+    host = '<hex string>.app.github.dev'     # クラウドIDE
+     # クラウドIDEの場合は以下をお使いください
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+
+
 end
