@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
 
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
-                      password: "foobarrr", password_confirmation: "foobarrr")
+      password: "foobar", password_confirmation: "foobar")
   end  
 
   test "should be valid" do
@@ -41,6 +41,7 @@ class UserTest < ActiveSupport::TestCase
       assert @user.valid?, "#{valid_address.inspect} should be valid"
     end
   end
+
   test "email validation should reject invalid addresses" do
     invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
                           foo@bar_baz.com foo@bar+baz.com]
@@ -64,17 +65,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "password should be present (nonblank)" do
-    @user.password = @user.password_confirmation = " " * 5
+    @user.password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
 
   test "password should have a minimum length" do
-    @user.password = @user.password_confirmation = "a" * 4
+    @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
 
   test "authenticated? should return false for a user with nil digest" do
-    assert_not @user.authenticated?('')
+    assert_not @user.authenticated?(:remember, '')
   end
 
 end
