@@ -26,9 +26,9 @@ class PasswordResetsController < ApplicationController
     if params[:user][:password].empty?                  # （3）への対応
       @user.errors.add(:password, "can't be empty")
       render 'edit', status: :unprocessable_entity
-    elsif @user.update(user_params)                     # （4）への対応
-      reset_session
+    elsif @user.update(user_params)      
       log_in @user
+      @user.update_attribute(:reset_digest, nil)               # （4）への対応
       flash[:success] = "Password has been reset."
       redirect_to @user
     else
@@ -52,7 +52,7 @@ class PasswordResetsController < ApplicationController
     def valid_user
       unless (@user && @user.activated? &&
               @user.authenticated?(:reset, params[:id]))
-        # redirect_to root_url
+        redirect_to root_url
       end
     end
 
@@ -64,19 +64,6 @@ class PasswordResetsController < ApplicationController
       end
     end
 
-    def update
-      if params[:user][:password].empty?
-        @user.errors.add(:password, "can't be empty")
-        render 'edit', status: :unprocessable_entity
-      elsif @user.update(user_params)
-        @user.update_attribute(:reset_digest, nil)
-        reset_session
-        log_in @user
-        flash[:success] = "Password has been reset."
-        redirect_to @user
-      else
-        render 'edit', status: :unprocessable_entity
-      end
-    end
+
 
 end
