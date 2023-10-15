@@ -65,8 +65,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
 
-  # アップロードされたファイルをAWSに保存する
-  config.active_storage.service = :amazon
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -95,6 +94,9 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+    # アップロードされたファイルをAWSに保存する
+    config.active_storage.service = :amazon
+
   # Use a different logger for distributed setups.
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
@@ -107,4 +109,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
 end
